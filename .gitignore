@@ -1,0 +1,30 @@
+# Environnements virtuels
+.venv/
+venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Base de données locale
+db.sqlite3
+db.sqlite3-journal
+
+# Variables d'environnement et secrets
+.env
+.env.*
+!.env.example
+
+# Fichiers système et éditeurs
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Fichiers statiques générés
+staticfiles/
+
+# Journaux
+*.log

@@ -1,0 +1,20 @@
+{% load static %}
+<!doctype html><html lang="fr" class="no-js"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Portfolio de Christ Strauss Kimbata — systèmes, réseaux, cybersécurité et projets IT."><title>{% block title %}Christ Strauss Kimbata — Portfolio{% endblock %}</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="{% static 'css/style.css' %}"><script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script></head>
+<body><div class="ambient"></div><header class="site-header"><nav class="nav container" aria-label="Navigation principale"><a class="logo" href="{% url 'home' %}">CS<span>K.</span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="navlinks" aria-label="Ouvrir le menu">☰</button><div class="nav-links" id="navlinks"><a href="{% url 'home' %}#accueil">Accueil</a><a href="{% url 'home' %}#apropos">À propos</a><a href="{% url 'home' %}#expertises">Expertises</a><a href="{% url 'home' %}#projets">Projets</a><a href="{% url 'home' %}#parcours">Parcours</a><a href="{% url 'home' %}#articles">Articles</a></div><a class="btn btn-outline nav-contact" href="{% url 'home' %}#contact">Parlons-en ↗</a></nav></header>
+<main>{% block content %}{% endblock %}</main><footer class="footer"><div class="container footer-inner"><strong>CS<span>K.</span></strong><span>© {% now 'Y' %} Christ Strauss Kimbata · Portfolio</span><a href="#accueil">Retour en haut ↑</a></div></footer>
+<script>
+// Mobile menu toggle
+const toggle=document.querySelector('.menu-toggle'),links=document.querySelector('.nav-links');
+toggle?.addEventListener('click',()=>{let open=links.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));});
+links?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.classList.remove('open');toggle?.setAttribute('aria-expanded','false')}));
+
+// Header scroll effect
+const header=document.querySelector('.site-header');
+window.addEventListener('scroll',()=>{const currentScroll=window.pageYOffset;if(currentScroll>50){header.classList.add('scrolled')}else{header.classList.remove('scrolled')}},{passive:true});
+
+// Section scroll animations
+const observerOptions={threshold:0.15,rootMargin:'0px 0px -100px 0px'};
+const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible')}})},observerOptions);
+
+document.querySelectorAll('section').forEach(el=>observer.observe(el));
+</script></body></html>
